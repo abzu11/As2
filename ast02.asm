@@ -1,8 +1,8 @@
 ; *****************************************************************
-;  Name: John Doe
-;  NSHE ID: 0123456789
-;  Section: 9999
-;  Assignment: 1
+;  Name: Abdelrahman Hassan
+;  NSHE ID: 5009131902
+;  Section: 1001
+;  Assignment: 2
 ;  Description: Assembly language arithmetic operations.
 ;		Formulas provided on assignment.
 ;		Focus on learning basic arithmetic operations
