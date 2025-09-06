@@ -342,51 +342,102 @@ _start:
 ;  unsigned double word multiplication
 ;	qAns11 = dNum1 * dNum2
 
+	mov eax, dword [dNum1]
+	mul dword [dnum2]
+	mov [qAns11], eax
+	mov [qAns11+4], edx
+
 ;	qAns12 = dNum2 * dNum3
 
+	mov eax, dword [dNum2]
+	mul dword [dNum3]
+	mov  [qAns12], eax
+	mov  [qAns12+4], edx
 ; -----
 ;  signed double word multiplication
 ;	qAns14 = dNum5 * dNum1
 
+	mov eax, dword [dNum5]
+	imul dword [dNum1]
+	mov [qAns14], eax
+	mov [qAns14+4], edx
+
 ;	qAns15 = dNum6 * dNum2
+
+	mov eax, dword [dNum6]
+	imul dword [dNum2]
+	mov [qAns15], eax
+	mov [qAns15+4], edx
 
 ; -----
 ;  unsigned double word division
 ;	dAns16 = dNum2 / dNum3
-
+	mov eax, [dNum2]
+	mov edx, [dNum2+4]
+	div dword [dNum3]
+	mov dword [dAns16], eax
 ;	dAns18 = qAns12 / dNum4
-
+	mov eax, dword [qAns12]
+	mov edx, dword [qAns12+4]
+	div dword [dNum4]
+	mov dword [dAns18], eax 
 ;	dRem18 = qAns12 % dNum4
-
+	mov dword [dRem18], edx
 ; -----
 ;  signed double word division
 ;	dAns19 = dNum5 / dNum2
 
+	mov eax, [dNum5]
+	mov edx, [dNum5+4]
+	idiv dword [dNum2]
+	mov dword [dAns19], eax
+
 ;	dAns21 = qAns12 / dNum4
 
-;	dRem21 = qAns12 % dNum4
+	mov eax, [qAns12]
+	mov edx, [qAns12+4]
+	idiv dword [dNum4]
+	mov dword [dAns21], eax
 
+;	dRem21 = qAns12 % dNum4
+	mov dword [dRem21], edx
 ; *****************************************
 ;  QUADWORD Operations
 
 ; -----
 ;  signed quadword additions
 ;	qAns4  = qNum5 + qNum1
-
+	mov rax, qword [qNum5]
+	add rax, qword [qNum1]
+	mov [qAns4], rax
 ;	qAns5  = qNum6 + qNum2
-
+	mov rax, qword [qNum6]
+	add rax, qword [qNum2]
+	mov [qAns5], rax
 ; -----
 ;  signed quadword subtraction
 ;	qAns9  = qNum5 - qNum3
-
+	mov rax, qword [qNum5]
+	sub rax, qword [qNum3]
+	mov [qAns9], rax
 ;	qAns10 = qNum6 - qNum4
-
+	mov rax, qword [qNum6]
+	sub rax, qword [qNum4]
+	mov [qAns10], rax
 ; -----
 ;  unsigned quadword multiplication
 ;	dqAns11  = qNum1 * qNum2
 
-;	dqAns12  = qNum2 * qNum3
+	mov rax, qword [qNum1]
+	mul qword [qNum2]
+	mov [dqAns11], rax
+	mov [dqAns11+8], rdx
 
+;	dqAns12  = qNum2 * qNum3
+	mov rax, qword [qNum2]
+	mul qword [qNum3]
+	mov [dqAns12], rax
+	mov [dqAns12+8], rdx
 ; -----
 ;  signed quadword multiplication
 ;	dqAns14  = qNum5 * qNum3
