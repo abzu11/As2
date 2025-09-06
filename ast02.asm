@@ -442,24 +442,55 @@ _start:
 ;  signed quadword multiplication
 ;	dqAns14  = qNum5 * qNum3
 
+	mov rax, qword [qNum5]
+	imul qword [qNum3]
+	mov [dqAns14], rax
+	mov [dqAns14+8], rdx
+
 ;	dqAns15  = qNum6 * qNum4
+
+	mov rax, qword [qNum6]
+	imul qword [qNum4]
+	mov [dqAns15], rax
+	mov [dqAns15+8], rdx
 
 ; -----
 ;  unsigned quadword division
 ;	qAns16 = qNum1 / qNum2
 
+	mov rax, [qNum1]
+	mov rdx, [qNum1+8]
+	div qword [qNum2]
+	mov qword [qAns16], rax
+
 ;	qAns18 = dqAns12 / qNum4
 
+	mov rax, [dqAns12]
+	mov rdx, [dqAns12+8]
+	div qword [qNum4]
+	mov qword [qAns18], rax
+
 ;	qRem18 = dqAns12 % qNum4
+	mov qword [qRem18], rdx
 
 ; -----
 ;  signed quadword division
 ;	qAns19 = qNum5 / qNum3
 
+	mov rax, [qNum5]
+	mov rdx, [qNum5+8]
+	idiv qword [qNum3]
+	mov qword [qAns19], rax
+
 ;	qAns21 = dqAns12 / qNum4
 
-;	qRem21 = dqAns12 % qNum4
+	mov rax, [dqAns12]
+	mov rdx, [dqAns12+8]
+	idiv qword [qNum4]
+	mov qword [qAns21], rax
 
+;	qRem21 = dqAns12 % qNum4
+	mov qword [qRem21], rdx
 ; *****************************************************************
 ;  Done, terminate program.
 
