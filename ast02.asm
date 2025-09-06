@@ -243,58 +243,104 @@ _start:
 ; -----
 ;  signed word additions
 ;	wAns4 = wNum5 + wNum3
-
+	mov ax, word [wNum5]
+	add ax, word [wNum3]
+	mov word [wAns4], ax
+	
 ;	wAns5 = wNum6 + wNum1
-
+	mov ax, word [wNum6]
+	add ax, word [wNum1]
+	mov word [wAns5], ax
 ; -----
 ;  signed word subtraction
 ;	wAns9 = wNum5 - wNum2
-
+	mov ax, word [wNum5]
+	sub ax, word [wNum2]
+	mov word [wAns9], ax
 ;	wAns10 = wNum6 - wNum3
-
+	mov ax, word [wNum6]
+	sub ax, word [wNum3]
+	mov word [wAns10], ax
 ; -----
 ;  unsigned word multiplication
 ;	dAns11 = wNum1 * wNum2
+	mov ax, word [wNum1]
+	mul word [wNum2]
+	mov dword [dAns11], ax
+	mov dword [dAns11+2], dx
+
 
 ;	dAns12 = wNum2 * wNum3
-
+	mov ax, word [wNum2]
+	mul word [wNum3]
+	mov dword [dAns12], ax
+	mov dword [dAns12+2], dx
 ; -----
 ;  signed word multiplication
 ;	dAns14 = wNum5 * wNum1
-
+	mov ax, word [wNum5]
+	imul word [wNum1]
+	mov dword [dAns14], ax
+	mov dword [dAns14+2], dx
 ;	dAns15 = wNum6 * wNum2
-
+	mov ax, word [wNum6]
+	imul word [wNum2]
+	mov dword [dAns15], ax
+	mov dword [dAns15+2], dx
 ; -----
 ;  unsigned word division
 ;	wAns16 = wNum1 / wNum2
+	mov dx, 0
+	mov ax, word [wNum1]
+	div word [wNum2]
+	mov word [wAns16], ax
 
 ;	wAns18 = dNum3 / wNum4 
 
+	mov ax, word [dNum3]
+	mov dx, 0
+	div word [wNum4]
+	mov word [wAns18], ax
 ;	wRem18 = dNum3 % wNum4
-
+	mov word [wRem18], dx
 ; -----
 ;  signed word division
 ;	wAns19 = wNum5 / wNum3
-
+	
+	mov ax, word [wNum5]
+	cwd
+	idiv word [wNum3]
+	mov word [wAns19], ax
 ;	wAns21 = dNum1 / wNum2
-
+	mov ax, word [dNum1]
+	cwd
+	idiv word [wNum2]
+	mov word [wAns21], ax
 ;	wRem21 = dNum1 % wNum2
-
+	mov word [wRem21], dx
 ; *****************************************
 ;  DOUBLEWORD Operations
 
 ; -----
 ;  signed double word additions
 ;	dAns4 = dNum5 + dNum3
-
+	mov eax, dword [dNum5]
+	add eax, dword [dNum3]
+	mov dword [dAns4], eax
 ;	dAns5 = dNum6 + dNum4
-
+	mov eax, dword [dNum6]
+	add eax, dword [dNum4]
+	mov dword [dAns5], eax
 ; -----
 ;  signed double word subtraction
 ;	dAns9 = dNum5 - dNum2
-
+	mov eax, dword [dNum5]
+	sub eax, dword [dNum2]
+	mov dword [dAns9], eax
 ;	dAns10 = dNum6 – dNum3 
-
+	mov eax, dword [dNum6]
+	sub eax, dword [dNum3]
+	mov dword [dAns10], eax
 ; -----
 ;  unsigned double word multiplication
 ;	qAns11 = dNum1 * dNum2
