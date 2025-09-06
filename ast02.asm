@@ -207,6 +207,7 @@ _start:
 ; -----
 ;  unsigned byte division
 ;	bAns16 = bNum1 / bNum2
+	mov ah, 0  
 	mov al, byte [bNum1]
 	div byte [bNum2]
 	mov byte [bAns16], al
@@ -262,27 +263,27 @@ _start:
 ;	dAns11 = wNum1 * wNum2
 	mov ax, word [wNum1]
 	mul word [wNum2]
-	mov dword [dAns11], ax
-	mov dword [dAns11+2], dx
+	mov  [dAns11], ax
+	mov  [dAns11+2], dx
 
 
 ;	dAns12 = wNum2 * wNum3
 	mov ax, word [wNum2]
 	mul word [wNum3]
-	mov dword [dAns12], ax
-	mov dword [dAns12+2], dx
+	mov  [dAns12], ax
+	mov  [dAns12+2], dx
 ; -----
 ;  signed word multiplication
 ;	dAns14 = wNum5 * wNum1
 	mov ax, word [wNum5]
 	imul word [wNum1]
-	mov dword [dAns14], ax
-	mov dword [dAns14+2], dx
+	mov  [dAns14], ax
+	mov  [dAns14+2], dx
 ;	dAns15 = wNum6 * wNum2
 	mov ax, word [wNum6]
 	imul word [wNum2]
-	mov dword [dAns15], ax
-	mov dword [dAns15+2], dx
+	mov [dAns15], ax
+	mov [dAns15+2], dx
 ; -----
 ;  unsigned word division
 ;	wAns16 = wNum1 / wNum2
@@ -293,9 +294,9 @@ _start:
 
 ;	wAns18 = dNum3 / wNum4 
 
-	mov eax, dword [dNum3]
-	mov dx, 0
-	div dword  [wNum4]
+	mov ax, [dNum3]
+	mov dx, [dNum3+2]
+	div word [wNum4]
 	mov word [wAns18], ax
 ;	wRem18 = dNum3 % wNum4
 	mov word [wRem18], dx
@@ -308,8 +309,8 @@ _start:
 	idiv word [wNum3]
 	mov word [wAns19], ax
 ;	wAns21 = dNum1 / wNum2
-	mov ax, word [dNum1]
-	cwd
+	mov ax, [dNum1]
+	mov dx, [dNum1+2]  
 	idiv word [wNum2]
 	mov word [wAns21], ax
 ;	wRem21 = dNum1 % wNum2
