@@ -217,8 +217,6 @@ _start:
 	div byte [bNum4]
 	mov byte [bAns18], al
 ;	bRem18 = wNum2 % bNum4
-	mov ax, word [wNum2]
-	div byte [bNum4]
 	mov byte [bRem18], ah
 ; -----
 ;  signed byte division
@@ -233,8 +231,6 @@ _start:
 	idiv byte [bNum1]
 	mov byte [bAns21], al
 ;	bRem21 = wNum4 % bNum1
-	mov ax, word [wNum4]
-	idiv byte [bNum1]
 	mov byte [bRem21], ah
 ; *****************************************
 ;  WORD Operations
@@ -297,9 +293,9 @@ _start:
 
 ;	wAns18 = dNum3 / wNum4 
 
-	mov ax, word [dNum3]
+	mov eax, dword [dNum3]
 	mov dx, 0
-	div word [wNum4]
+	div dword  [wNum4]
 	mov word [wAns18], ax
 ;	wRem18 = dNum3 % wNum4
 	mov word [wRem18], dx
