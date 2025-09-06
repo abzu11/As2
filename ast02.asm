@@ -343,7 +343,7 @@ _start:
 ;	qAns11 = dNum1 * dNum2
 
 	mov eax, dword [dNum1]
-	mul dword [dnum2]
+	mul dword [dNum2]
 	mov [qAns11], eax
 	mov [qAns11+4], edx
 
