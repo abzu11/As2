@@ -1,17 +1,17 @@
 # CS 218 Assignment #1
 # Simple make file for asst #1
 
-OBJS	= ast02.o
+OBJS	= ast03.o
 ASM		= yasm -g dwarf2 -f elf64
 LD		= ld -g
 
-all: ast02
+all: ast03
 
-ast02.o: ast02.asm 
-	$(ASM) ast02.asm -l ast02.lst
+ast03.o: ast03.asm 
+	$(ASM) ast03.asm -l ast03.lst
 
-ast02: ast02.o
-	$(LD) -o ast02 $(OBJS)
+ast03: ast03.o
+	$(LD) -o ast03 $(OBJS)
 
 # -----
 # clean by removing object file.
